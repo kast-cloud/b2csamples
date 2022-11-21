@@ -86,7 +86,7 @@ copy /src
 
     b. In the second registration (through the AAD blade), give **application** permissions to Graph API: Directory.Read, Group.ReadWrite.All. Create a secret for this app and store its configuration in the *ClientCreds* property of the appSettings.json (store the secret in the API configuration as *ClientCreds:ClientSecret*)
 
-    d. Create another secret, store it in the API configuration as *Invitation:SigningKey* **and** as *InvitationSigningKey* in your b2C tenant). 
+    d. ==Create another secret (do you mean in the Graph client app), store it in the API configuration as *Invitation:SigningKey* **and** as *InvitationSigningKey* (do you mean as B2C_1A_InvitationSigningKey under )  does this in your b2C tenant).== 
 
 2. The public component of the certificate created in the B2C setup step above should be provided to the deployed REST app. If deploying to Azure Web Apps, set WEBSITE_LOAD_CERTIFICATES to '*'. Also, in the General Settings, specify the Cerificate exclusion Path as /tenant/oauth2 (these APIs are not called by the IEF policies but only by the UI application). 
 
