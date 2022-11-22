@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RESTFunctions.Models;
-using RESTFunctions.Services;
 
 namespace RESTFunctions.Controllers
 {
@@ -25,7 +19,7 @@ namespace RESTFunctions.Controllers
     public partial class Tenant : ControllerBase
     {
         // Get user tenants
-        [Authorize(Roles = "Tenant.admin")]
+        [Authorize(Roles = "Tenant.admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Get()
         {
             var id = User.FindFirst("appTenantId").Value;
@@ -54,7 +48,7 @@ namespace RESTFunctions.Controllers
  
         // POST api/values
         [HttpPut]
-        [Authorize(Roles = "Tenant.admin")]
+        [Authorize(Roles = "Tenant.admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Put([FromBody] TenantDetails tenant)
         {
             using (_logger.BeginScope("PUT tenant"))
@@ -85,13 +79,13 @@ namespace RESTFunctions.Controllers
             }
         }
         [HttpPost("invite")]
-        [Authorize(Roles = "Tenant.admin")]
+        [Authorize(Roles = "Tenant.admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<string> Invite([FromBody] InvitationDetails invite)
         {
             return await _inviter.GetInvitationUrl(User, invite);
         }
 
-        [Authorize]
+        [Authorize( AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         //[HttpGet("members/{tenantId}")] //TODO: tenantId may not go first as that would prevent ecluding this path from client cert requirement
         [HttpGet("members")]
         public async Task<IActionResult> GetMembers()

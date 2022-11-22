@@ -94,7 +94,7 @@ export const SwitchTenant = () => {
         <Dropdown.Item as="button" key={ix} onClick={() => 
                 instance.loginRedirect({ 
                     authority:b2cPolicies.authorities.signIn.authority,
-                    scopes: ["openid", "profile", `https://${deployment.b2cTenantName}.onmicrosoft.com/mtrest/User.Invite`, `https://${deployment.b2cTenantName}.onmicrosoft.com/mtrest/User.ReadAll`],                    
+                    scopes: ["openid", "profile", `https://${deployment.b2cTenantName}.onmicrosoft.com/rest-api/User.Invite`, `https://${deployment.b2cTenantName}.onmicrosoft.com/rest-api/User.ReadAll`],                    
                     account: accounts[0],
                     extraQueryParameters: { tenant: tenant }
                 })

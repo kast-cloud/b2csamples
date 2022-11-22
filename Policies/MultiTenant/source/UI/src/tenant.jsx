@@ -127,7 +127,7 @@ const InviteMember = () => {
                         setInvitation("");
                         let request = { 
                             authority: `https://${deployment.b2cTenantName}.b2clogin.com/${deployment.b2cTenantId}/${accounts[0].idTokenClaims.acr}`,
-                            scopes: ["openid", "profile", `https://${deployment.b2cTenantName}.onmicrosoft.com/mtrest/User.Invite`, `https://${deployment.b2cTenantName}.onmicrosoft.com/mtrest/User.ReadAll`],
+                            scopes: ["openid", "profile", `https://${deployment.b2cTenantName}.onmicrosoft.com/rest-api/User.Invite`, `https://${deployment.b2cTenantName}.onmicrosoft.com/rest-api/User.ReadAll`],
                             account: accounts[0],
                             extraQueryParameters: { tenant: accounts[0].idTokenClaims.appTenantName }
                         }
@@ -194,7 +194,7 @@ const Members = (props)  => {
     useEffect(() => {
         let request = { 
             authority: `https://${deployment.b2cTenantName}.b2clogin.com/${deployment.b2cTenantId}/${account.idTokenClaims.acr}`,
-            scopes: ["openid", "profile", `https://${deployment.b2cTenantName}.onmicrosoft.com/mtrest/User.Invite`, `https://${deployment.b2cTenantName}.onmicrosoft.com/mtrest/User.ReadAll`],
+            scopes: ["openid", "profile", `https://${deployment.b2cTenantName}.onmicrosoft.com/rest-api/User.Invite`, `https://${deployment.b2cTenantName}.onmicrosoft.com/rest-api/User.ReadAll`],
             account: accounts[0],
             extraQueryParameters: { tenant: account.idTokenClaims.appTenantName }
         };

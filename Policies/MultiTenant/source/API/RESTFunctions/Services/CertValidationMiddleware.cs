@@ -16,20 +16,23 @@ namespace RESTFunctions.Services
 {
     public class CertValidationMiddleware
     {
-        public CertValidationMiddleware(RequestDelegate next, IOptionsMonitor<ClientCertificateOptions> options, ILogger<CertValidationMiddleware> logger)
+        public CertValidationMiddleware(RequestDelegate next, IOptionsMonitor<ClientCertificateOptions> options, ILogger<CertValidationMiddleware> logger, IConfiguration config = null)
         {
             _next = next;
             _optionsMonitor = options;
             _logger = logger;
+            _config = config;
         }
         private readonly RequestDelegate _next;
         private readonly IOptionsMonitor<ClientCertificateOptions> _optionsMonitor;
         ILogger<CertValidationMiddleware> _logger;
+        private readonly IConfiguration _config;
+        
         public async Task InvokeAsync(HttpContext context)
         {
             _logger.LogInformation("Starting cert validation");
 
-            var testRun = Environment.GetEnvironmentVariable("SkipAuth");
+            var testRun = _config["ApiSettings:SkipAuth"];
             if (!String.IsNullOrEmpty(testRun) && (testRun == "Yes"))
             {
                 context.User = new System.Security.Claims.ClaimsPrincipal(new ClaimsIdentity(

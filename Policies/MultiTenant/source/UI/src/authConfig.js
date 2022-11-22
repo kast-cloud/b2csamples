@@ -7,10 +7,10 @@ import { LogLevel } from "@azure/msal-browser";
 
 export const deployment = {
     policyPrefix : "V2",
-    b2cTenantName: "b2cmultitenant",
-    b2cTenantId: "d06b10f6-c712-40c1-9617-cec9c7d02390",
-    b2cClientId: "c84a01bb-4f19-4eef-9941-4ab537922039",
-    restUrl: "https://b2cmtrestv2.azurewebsites.net/"
+    b2cTenantName: "kaststg",
+    b2cTenantId: "5d1f00d5-2a97-4b86-8ffe-2ad7e7ef4e51",
+    b2cClientId: "dccfca48-cb1d-412b-828e-861290e114da",
+    restUrl: "https://kast.au.ngrok.io/"
 }
 
 export const deployment_b2cprod = {
@@ -94,7 +94,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: ["openid", "profile", "https://mrochonb2cprod.onmicrosoft.com/mtrest/User.Invite", "https://mrochonb2cprod.onmicrosoft.com/mtrest/User.ReadAll"]
+    scopes: ["openid", "profile", "https://kaststg.onmicrosoft.com/rest-api/User.Invite", "https://kaststg.onmicrosoft.com/rest-api/Members.Read.All"]
 };
 
 /**
@@ -102,5 +102,5 @@ export const loginRequest = {
  * between applications by providing a "login_hint" property.
  */
 export const silentRequest = {
-  scopes: ["openid", "profile", "https://mrochonb2cprod.onmicrosoft.com/mtrest/User.Invite", "https://mrochonb2cprod.onmicrosoft.com/mtrest/User.ReadAll"]
+  scopes: ["openid", "profile", "https://kaststg.onmicrosoft.com/rest-api/User.Invite", "https://kaststg.onmicrosoft.com/rest-api/Members.Read.All"]
 };
