@@ -10,7 +10,7 @@ export const deployment = {
     b2cTenantName: "kaststg",
     b2cTenantId: "5d1f00d5-2a97-4b86-8ffe-2ad7e7ef4e51",
     b2cClientId: "dccfca48-cb1d-412b-828e-861290e114da",
-    restUrl: "https://kast.au.ngrok.io/"
+    restUrl: "https://kast.au.ngrok.io/api/kast/"
 }
 
 export const deployment_b2cprod = {
